@@ -1,4 +1,4 @@
-= DESCRIPTION:
+# DESCRIPTION:
 
 Installs Redis. Redis is an open source, advanced key-value store. 
 
@@ -6,27 +6,27 @@ It is often referred to as a data structure server since keys can contain string
 
 Details http://redis.io/
 
-= REQUIREMENTS:
+# REQUIREMENTS:
 
 none
 
 Currently tested on Ubuntu 10.04 ONLY.
 
-= ATTRIBUTES:
+# ATTRIBUTES:
 
-['redis']['bind']         = "127.0.0.1"
-['redis']['config_path']  = "/etc/redis/redis.conf"
-['redis']['daemonize']    = "no"
-['redis']['timeout']      = "300"
-['redis']['loglevel']     = "verbose"
+	['redis']['bind']         # "127.0.0.1"
+	['redis']['config_path']  # "/etc/redis/redis.conf"
+	['redis']['daemonize']    # "no"
+	['redis']['timeout']      # "300"
+	['redis']['loglevel']     # "verbose"
 
 
-= USAGE:
+# USAGE:
 
-Add cookbook "redis" to your runlist. This will install redis on your machine.
-Add cookbook "redis::gem" to your runlist. This will install the redis Rubygem.
-Add cookbook "redis::remove" to your runlist if you want to remove redis on your machine.
+* Add cookbook ``redis" to your runlist. This will install redis on your machine.
+* Add cookbook ``redis::gem" to your runlist. This will install the redis Rubygem.
+* Add cookbook ``redis::remove" to your runlist if you want to remove redis on your machine.
 
-= TODO
+# TODO
 
 * Implement ``redis::source`` recipe.
