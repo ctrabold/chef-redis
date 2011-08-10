@@ -18,6 +18,7 @@
 # limitations under the License.
 
 default['redis']['bind']         = "127.0.0.1"
+default['redis']['port']         = "6379"
 default['redis']['config_path']  = "/etc/redis/redis.conf"
 default['redis']['daemonize']    = "no"
 default['redis']['timeout']      = "300"
