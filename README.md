@@ -15,6 +15,7 @@ Currently tested on Ubuntu 10.04 ONLY.
 # ATTRIBUTES:
 
 	['redis']['bind']         # "127.0.0.1"
+	['redis']['port']         # "6379"
 	['redis']['config_path']  # "/etc/redis/redis.conf"
 	['redis']['daemonize']    # "no"
 	['redis']['timeout']      # "300"
