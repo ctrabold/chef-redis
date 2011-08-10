@@ -19,7 +19,7 @@ Currently tested on Ubuntu 10.04 ONLY.
 	['redis']['config_path']  # "/etc/redis/redis.conf"
 	['redis']['daemonize']    # "no"
 	['redis']['timeout']      # "300"
-	['redis']['loglevel']     # "verbose"
+	['redis']['loglevel']     # "notice"
 
 
 # USAGE:
