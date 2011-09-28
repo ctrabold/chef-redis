@@ -14,7 +14,9 @@ port <%= node['redis']['port'] %>
 # If you want you can bind a single interface, if the bind option is not
 # specified all the interfaces will listen for connections.
 #
+<% unless node['redis']['bind'] == false %>
 bind <%= node['redis']['bind'] %>
+<% end %>
 
 # Close the connection after a client is idle for N seconds (0 to disable)
 timeout <%= node['redis']['timeout'] %>
@@ -91,7 +93,9 @@ dir /var/lib/redis
 # This should stay commented out for backward compatibility and because most
 # people do not need auth (e.g. they run their own servers).
 #
-# requirepass foobared
+<% unless node['redis']['password'] == false %>
+requirepass <%= node['redis']['password'] %>
+<% end %>
 
 ################################### LIMITS ####################################
 
