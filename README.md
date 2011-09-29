@@ -20,7 +20,7 @@ Currently tested on Ubuntu 10.04 ONLY.
 	['redis']['daemonize']    # "no"
 	['redis']['timeout']      # "300"
 	['redis']['loglevel']     # "notice"
-	['redis']['password']     # false
+	['redis']['password']     # nil
 
 
 # USAGE:

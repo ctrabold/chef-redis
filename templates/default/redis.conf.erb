@@ -14,7 +14,7 @@ port <%= node['redis']['port'] %>
 # If you want you can bind a single interface, if the bind option is not
 # specified all the interfaces will listen for connections.
 #
-<% unless node['redis']['bind'] == false %>
+<% if node['redis']['bind'] %>
 bind <%= node['redis']['bind'] %>
 <% end %>
 
@@ -93,7 +93,7 @@ dir /var/lib/redis
 # This should stay commented out for backward compatibility and because most
 # people do not need auth (e.g. they run their own servers).
 #
-<% unless node['redis']['password'] == false %>
+<% if node['redis']['password'] %>
 requirepass <%= node['redis']['password'] %>
 <% end %>
 
