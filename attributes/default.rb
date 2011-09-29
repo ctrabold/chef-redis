@@ -23,3 +23,4 @@ default['redis']['config_path']  = "/etc/redis/redis.conf"
 default['redis']['daemonize']    = "no"
 default['redis']['timeout']      = "300"
 default['redis']['loglevel']     = "notice"
+default['redis']['password']     = nil
