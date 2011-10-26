@@ -1,5 +1,6 @@
 #
 # Author:: Christian Trabold <christian.trabold@dkd.de>
+# Author:: Fletcher Nichol <fnichol@nichol.ca>
 # Cookbook Name:: redis
 # Recipe:: source
 #
