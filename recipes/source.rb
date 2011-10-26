@@ -39,7 +39,9 @@ end
 execute "Extract #{tar_file}" do
   cwd       cache_dir
   command   <<-COMMAND
-    mkdir #{tar_dir} && tar zxf #{tar_file} -C #{tar_dir} --strip-components 1
+    rm -rf #{tar_dir} && \
+    mkdir #{tar_dir} && \
+    tar zxf #{tar_file} -C #{tar_dir} --strip-components 1
   COMMAND
 
   creates   "#{cache_dir}/#{tar_dir}/utils/redis_init_script"
