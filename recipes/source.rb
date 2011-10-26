@@ -42,7 +42,7 @@ execute "Extract #{tar_file}" do
     mkdir #{tar_dir} && tar zxf #{tar_file} -C #{tar_dir} --strip-components 1
   COMMAND
 
-  creates   "#{cache_dir}/#{tar_dir}"
+  creates   "#{cache_dir}/#{tar_dir}/utils/redis_init_script"
 end
 
 execute "Build #{tar_dir.split('/').last}" do
