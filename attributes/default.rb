@@ -24,3 +24,7 @@ default['redis']['daemonize']    = "no"
 default['redis']['timeout']      = "300"
 default['redis']['loglevel']     = "notice"
 default['redis']['password']     = nil
+
+# For source
+default['redis']['source_version'] = '2.4.2'
+default['redis']['data_dir'] = '/var/redis'

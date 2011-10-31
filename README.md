@@ -28,7 +28,4 @@ Currently tested on Ubuntu 10.04 ONLY.
 * Add cookbook ``redis`` to your runlist. This will install redis on your machine.
 * Add cookbook ``redis::gem`` to your runlist. This will install the redis Rubygem.
 * Add cookbook ``redis::remove`` to your runlist if you want to remove redis on your machine.
-
-# TODO
-
-* Implement ``redis::source`` recipe.
+* Add cookbook ``redis::source`` to your runlist if you want to build redis from source.
