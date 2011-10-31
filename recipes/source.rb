@@ -17,3 +17,44 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+script "get and make redis" do
+  interpreter "bash"
+  user "root"
+  cwd "/tmp"
+  code <<-EOH
+  wget http://redis.googlecode.com/files/redis-#{node["redis"]["source_version"]}.tar.gz
+  tar -zxf redis-#{node["redis"]["source_version"]}.tar.gz
+  cd redis-#{node["redis"]["source_version"]}
+  ./configure
+  make
+  cp src/redis-cli /usr/local/bin
+  cp src/redis-server /usr/local/bin
+  mkdir /etc/redis 
+  mkdir #{node["redis"]["data_dir"]}
+  EOH
+end
+
+
+template "/etc/init.d/redis" do
+  source "redis_init.erb"
+  mode "0744"
+end
+
+template "/etc/redis/#{node["redis"]["port"]}.conf" do
+  source 'redis.source.conf.erb'
+  mode "0644"
+end
+
+
+script "setup init.d and start process" do
+  interpreter "bash"
+  user "root"
+  cwd "/etc/init.d"
+  code <<-EOH
+  update-rc.d redis defaults
+  /etc/init.d/redis start
+  EOH
+end
+
+
