@@ -20,6 +20,13 @@
 
 package "redis-server"
 
+service "redis" do
+  start_command "/etc/init.d/redis-server start #{node['redis']['config_path']}"
+  stop_command "/etc/init.d/redis-server stop"
+  restart_command "/etc/init.d/redis-server restart"
+  action :enable
+end
+
 template "/etc/redis/redis.conf" do
   source "redis.conf.erb"
   owner "root"
@@ -29,11 +36,6 @@ template "/etc/redis/redis.conf" do
 end
 
 
-service "redis" do
-  start_command "/etc/init.d/redis-server start #{node['redis']['config_path']}"
-  stop_command "/etc/init.d/redis-server stop"
-  restart_command "/etc/init.d/redis-server restart"
-  action :start
-end
+
 
 
