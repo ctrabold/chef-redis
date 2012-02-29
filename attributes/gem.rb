@@ -1,7 +1,8 @@
 #
 # Author:: Christian Trabold <christian.trabold@dkd.de>
+# Author:: Fletcher Nichol <fnichol@nichol.ca>
 # Cookbook Name:: redis
-# Recipe:: gem
+# Attributes:: gem 
 #
 # Copyright 2011, dkd Internet Service GmbH
 #
@@ -16,9 +17,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
-node['redis']['gem']['packages'].each do |pkg|
-  gem_package pkg
-end
+# list of ruby gems to install for redis
+default['redis']['gem']['packages']  = %w{ redis }
 
