@@ -29,6 +29,8 @@ port            = node['redis']['port']
 redis_user      = node['redis']['source']['user']
 redis_group     = node['redis']['source']['group']
 
+node.set_unless['redis']['pidfile'] = "/var/run/redis_#{port}.pid"
+
 Array(node['redis']['source']['pkgs']).each { |pkg| package pkg }
 
 remote_file "#{cache_dir}/#{tar_file}" do
