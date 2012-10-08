@@ -17,10 +17,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-default['redis']['bind']         = "127.0.0.1"
-default['redis']['port']         = "6379"
-default['redis']['config_path']  = "/etc/redis/redis.conf"
-default['redis']['daemonize']    = "no"
-default['redis']['timeout']      = "300"
-default['redis']['loglevel']     = "notice"
-default['redis']['password']     = nil
+default['redis']['bind']            = "127.0.0.1"
+default['redis']['port']            = "6379"
+default['redis']['config_path']     = "/etc/redis/redis.conf"
+default['redis']['daemonize']       = "no"
+default['redis']['timeout']         = "300"
+default['redis']['loglevel']        = "notice"
+default['redis']['password']        = nil
+default['redis']['logfile']         = "/var/log/redis/redis-server.log"
+default['redis']['databases']       = 16
+default['redis']['save']            = { 900 => 1, 300 => 10, 60 => 1000 }
+default['redis']['rdbcompression']  = "yes"
+default['redis']['dbfilename']      = "dump.rdb"
+default['redis']['dir']             = "/var/lib/redis"
+default['redis']['maxclients']      = nil
+default['redis']['maxmemory']       = nil
+default['redis']['appendonly']      = "no"
+default['redis']['appendfsync']     = "always"
+default['redis']['glueoutputbuf']   = "yes"
+
+default['redis']['slaveof']['ip']   = nil
+default['redis']['slaveof']['port'] = nil
+default['redis']['masterauth']      = nil

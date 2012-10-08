@@ -1,6 +1,6 @@
 # DESCRIPTION:
 
-Installs Redis. Redis is an open source, advanced key-value store. 
+Installs Redis. Redis is an open source, advanced key-value store.
 
 It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets.
 
@@ -14,13 +14,28 @@ Currently tested on Ubuntu 10.04 ONLY.
 
 # ATTRIBUTES:
 
-	['redis']['bind']         # "127.0.0.1"
-	['redis']['port']         # "6379"
-	['redis']['config_path']  # "/etc/redis/redis.conf"
-	['redis']['daemonize']    # "no"
-	['redis']['timeout']      # "300"
-	['redis']['loglevel']     # "notice"
-	['redis']['password']     # nil
+	['redis']['bind']             # "127.0.0.1"
+	['redis']['port']             # "6379"
+	['redis']['config_path']      # "/etc/redis/redis.conf"
+	['redis']['daemonize']        # "no"
+	['redis']['timeout']          # "300"
+	['redis']['loglevel']         # "notice"
+	['redis']['password']         # nil
+	['redis']['logfile']          # "/var/log/redis/redis-server.log"
+	['redis']['databases']        # 16
+	['redis']['save']             # { 900: 1, 300: 10, 60: 1000 }
+	['redis']['rdbcompression']   # "yes"
+	['redis']['dbfilename']       # "dump.rdb"
+	['redis']['dir']              # "/var/lib/redis"
+	['redis']['maxclients']       # nil
+	['redis']['maxmemory']        # nil
+	['redis']['appendonly']       # "no"
+	['redis']['appendfsync']      # "always"
+	['redis']['glueoutputbuf']    # "yes"
+
+	['redis']['slaveof']['ip']   # nil
+	['redis']['slaveof']['port'] # nil
+	['redis']['masterauth']      # nil
 
 	['redis']['source']['version']          # "2.4.1"
 	['redis']['source']['prefix']           # "/usr/local"
