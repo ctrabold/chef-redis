@@ -59,11 +59,11 @@ group redis_group
 
 user redis_user do
   gid redis_group
-  home    "/var/lib/redis"
+  home    node[:redis][:dir]
   system  true
 end
 
-%w{/var/run/redis.pid /var/log/redis /var/lib/redis}.each do |dir|
+[File.dirname(node[:redis][:config_path]), File.dirname(node[:redis][:logfile]), node[:redis][:dir]].each do |dir|
   directory dir do
     owner       redis_user
     group       redis_group
@@ -75,32 +75,28 @@ end
 if node['redis']['source']['create_service']
   node.set['redis']['daemonize'] = "yes"
 
-  execute "Install redis-server init.d script" do
-    command   <<-COMMAND
-      cp #{cache_dir}/#{tar_dir}/utils/redis_init_script /etc/init.d/redis
-    COMMAND
-
-    creates   "/etc/init.d/redis"
-  end
-
-  file "/etc/init.d/redis" do
-    owner   "root"
-    group   "root"
-    mode    "0755"
-  end
-
   service "redis" do
     supports  :status => false, :restart => false, :reload => false
     action    :enable
   end
 
-  directory "/etc/redis" do
+  template "/etc/init.d/redis" do
+    source  "init.sh.erb"
     owner   "root"
     group   "root"
     mode    "0755"
+
+    notifies :restart, "service[redis]"
   end
 
-  template "/etc/redis/#{port}.conf" do
+  directory File.dirname("#{node[:redis][:config_path]}") do
+    owner   "root"
+    group   "root"
+    mode    "0755"
+    recursive true
+  end
+
+  template "#{node[:redis][:config_path]}" do
     source  "redis.conf.erb"
     owner   "root"
     group   "root"

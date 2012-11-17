@@ -27,10 +27,11 @@ service "redis" do
   action :start
 end
 
-template "/etc/redis/redis.conf" do
+template "#{node[:redis][:config_path]}" do
   source "redis.conf.erb"
   owner "root"
   group "root"
   mode 0644
+
   notifies :restart, resources(:service => "redis")
 end

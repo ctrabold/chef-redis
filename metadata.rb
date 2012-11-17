@@ -3,7 +3,7 @@ maintainer_email "christian.trabold@dkd.de"
 license          "All rights reserved"
 description      "Installs/Configures redis"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.0.5"
+version          "0.0.6"
 recipe           "redis", "Includes the package recipe by default."
 recipe           "redis::package", "Sets up a redis server."
 recipe           "redis::gem", "Installs redis gem for ruby development."
