@@ -1,4 +1,7 @@
 # Redis configuration file example
+<% if @version %>
+# Configuration of redis version <%= @version %>
+<% end %>
 
 # By default Redis does not run as a daemon. Use 'yes' if you need it.
 # Note that Redis will write a pid file in /var/run/redis.pid when daemonized.
@@ -149,7 +152,7 @@ requirepass <%= node['redis']['password'] %>
 appendonly no
 
 # The fsync() call tells the Operating System to actually write data on disk
-# instead to wait for more data in the output buffer. Some OS will really flush 
+# instead to wait for more data in the output buffer. Some OS will really flush
 # data on disk, some other OS will just try to do it ASAP.
 #
 # Redis supports three different modes:

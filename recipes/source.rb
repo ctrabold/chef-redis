@@ -23,7 +23,8 @@ cache_dir       = Chef::Config[:file_cache_path]
 install_prefix  = node['redis']['source']['prefix']
 tar_url         = node['redis']['source']['tar_url']
 tar_checksum    = node['redis']['source']['tar_checksum']
-tar_file        = "redis-#{node['redis']['source']['version']}.tar.gz"
+redis_version   = node['redis']['source']['version']
+tar_file        = "redis-#{redis_version}.tar.gz"
 tar_dir         = tar_file.sub(/\.tar\.gz$/, '')
 port            = node['redis']['port']
 redis_user      = node['redis']['source']['user']
@@ -50,9 +51,17 @@ end
 
 execute "Build #{tar_dir.split('/').last}" do
   cwd       "#{cache_dir}/#{tar_dir}"
-  command   %{make prefix=#{install_prefix} install}
+  command   %{
+    make prefix=#{install_prefix} install
+    mv "#{install_prefix}/bin/redis-server" "#{install_prefix}/bin/redis-server-#{redis_version}"
+  }
 
-  creates   "#{install_prefix}/bin/redis-server"
+  creates   "#{install_prefix}/bin/redis-server-#{redis_version}"
+end
+
+execute "rm -f #{install_prefix}/bin/redis-server"
+link "#{install_prefix}/bin/redis-server" do
+  to "#{install_prefix}/bin/redis-server-#{redis_version}"
 end
 
 group redis_group
@@ -77,16 +86,21 @@ if node['redis']['source']['create_service']
 
   execute "Install redis-server init.d script" do
     command   <<-COMMAND
-      cp #{cache_dir}/#{tar_dir}/utils/redis_init_script /etc/init.d/redis
+      cp #{cache_dir}/#{tar_dir}/utils/redis_init_script /etc/init.d/redis-#{redis_version}
     COMMAND
 
-    creates   "/etc/init.d/redis"
+    creates   "/etc/init.d/redis-#{redis_version}"
   end
 
-  file "/etc/init.d/redis" do
+  file "/etc/init.d/redis-#{redis_version}" do
     owner   "root"
     group   "root"
     mode    "0755"
+  end
+
+  execute "rm -f /etc/init.d/redis"
+  link "/etc/init.d/redis" do
+    to "/etc/init.d/redis-#{redis_version}"
   end
 
   service "redis" do
@@ -105,6 +119,7 @@ if node['redis']['source']['create_service']
     owner   "root"
     group   "root"
     mode    "0644"
+    variables({:version => node['redis']['source']['version']})
 
     notifies :restart, "service[redis]"
   end
