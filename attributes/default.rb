@@ -17,7 +17,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-default['redis']['bind']         = "127.0.0.1"
+default['redis']['bind']         = node['ipaddress']
 default['redis']['port']         = "6379"
 default['redis']['config_path']  = "/etc/redis/redis.conf"
 default['redis']['daemonize']    = "no"
