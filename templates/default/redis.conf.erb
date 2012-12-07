@@ -6,7 +6,9 @@ daemonize <%= node['redis']['daemonize'] %>
 
 # When run as a daemon, Redis write a pid file in /var/run/redis.pid by default.
 # You can specify a custom pid file location here.
-pidfile /var/run/redis_<%= node['redis']['port'] %>.pid
+<% if node['redis']['pidfile'] %>
+pidfile <%= node['redis']['pidfile'] %>
+<% end %>
 
 # Accept connections on the specified port, default is 6379
 port <%= node['redis']['port'] %>

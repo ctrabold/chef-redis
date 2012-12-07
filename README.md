@@ -21,6 +21,7 @@ Currently tested on Ubuntu 10.04 ONLY.
 	['redis']['timeout']      # "300"
 	['redis']['loglevel']     # "notice"
 	['redis']['password']     # nil
+	['redis']['pidfile']      # "/var/run/redis_#{defult['redis']['port']}.pid
 
 	['redis']['source']['version']          # "2.4.1"
 	['redis']['source']['prefix']           # "/usr/local"
