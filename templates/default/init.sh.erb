@@ -8,8 +8,8 @@
 EXEC=/usr/local/bin/redis-server
 CLIEXEC=/usr/local/bin/redis-cli
 
-PIDFILE="<%= node[:redis][:pidfile]  %>"
-REDISPORT="<%= node[:redis][:port]  %>"
+PIDFILE="<%= node[:redis][:pidfile] %>"
+REDISPORT="<%= node[:redis][:port] %>"
 CONF="<%= node[:redis][:config_path] %>"
 
 case "$1" in

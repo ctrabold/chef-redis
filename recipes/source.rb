@@ -77,7 +77,6 @@ if node['redis']['source']['create_service']
 
   service "redis" do
     supports  :status => false, :restart => false, :reload => false
-    action    :enable
   end
 
   template "/etc/init.d/redis" do

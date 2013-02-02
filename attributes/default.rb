@@ -32,7 +32,7 @@ default['redis']['syslog-enabled']   = "no"
 default['redis']['syslog-ident']     = "redis"
 default['redis']['syslog-facility']  = "LOCAL0"
 default['redis']['databases']        = 16
-default['redis']['save']             = { 900 => 1, 300 => 10, 60 => 1000 }
+default['redis']['save']             = {} #{ 900 => 1, 300 => 10, 60 => 1000 }
 default['redis']['rdbcompression']   = "yes"
 default['redis']['dbfilename']       = "dump.rdb"
 default['redis']['dir']              = "/var/lib/redis"
