@@ -21,4 +21,3 @@
 node['redis']['gem']['packages'].each do |pkg|
   gem_package pkg
 end
-
