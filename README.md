@@ -6,6 +6,8 @@ It is often referred to as a data structure server since keys can contain string
 
 Details http://redis.io/
 
+[![Build Status](https://travis-ci.org/ctrabold/chef-redis.png?branch=master)](https://travis-ci.org/ctrabold/chef-redis)
+
 # REQUIREMENTS:
 
 none
