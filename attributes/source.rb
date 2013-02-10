@@ -32,7 +32,7 @@ default['redis']['source']['group'] = "redis"
 
 case platform
 when "ubuntu","debian"
-  node.set['redis']['source']['pkgs'] = %w{build-essential}
+  node.set['redis']['source']['pkgs'] = %w{ build-essential }
 else
   node.set['redis']['source']['pkgs'] = []
 end

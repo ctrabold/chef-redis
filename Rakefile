@@ -1,12 +1,17 @@
 #!/usr/bin/env rake
 
-require 'rubygems'
-require 'bundler'
 require 'rspec/core/rake_task'
 
 task :default => 'foodcritic'
 
-RSpec::Core::RakeTask.new
+# Don't output shell commands for fileutils
+Rake::FileUtilsExt.verbose(false)
+
+desc 'Runs specs'
+RSpec::Core::RakeTask.new do |t|
+  t.pattern = 'spec/**/*_spec.rb'
+  t.verbose = true
+end
 
 desc "Runs foodcritic linter"
 task :foodcritic do
@@ -19,5 +24,5 @@ end
 
 desc "Runs knife cookbook test"
 task :knife do
-  sh "knife cookbook test cookbook --verbose --all --config test/.chef/knife.rb --cookbook-path ./"
+  sh "knife cookbook test cookbook --verbose --all --cookbook-path ./"
 end
