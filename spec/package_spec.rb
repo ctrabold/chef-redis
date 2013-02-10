@@ -10,9 +10,8 @@ describe 'redis::package' do
   end
 
  	it 'should start the service' do
-    pending "Rename service"
-    chef_run.should start_service 'redis'
-    chef_run.should enable_service 'redis'
+    chef_run.should start_service 'redis-server'
+    chef_run.should enable_service 'redis-server'
   end
 
   it 'should create a configuration file' do
