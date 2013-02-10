@@ -73,8 +73,6 @@ end
 end
 
 if node['redis']['source']['create_service']
-  node.set['redis']['daemonize'] = "yes"
-
   execute "Install redis-server init.d script" do
     command   <<-COMMAND
       cp #{cache_dir}/#{tar_dir}/utils/redis_init_script /etc/init.d/redis

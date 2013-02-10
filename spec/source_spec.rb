@@ -61,10 +61,6 @@ describe "redis::source" do
 
       before{ chef_run.converge 'redis::source' }
 
-      it "does not set daemonize property" do
-        chef_run.node['redis']['daemonize'].should eq "no"
-      end
-
       it "does not create init file" do
         chef_run.should_not create_file '/etc/init.d/redis'
       end
