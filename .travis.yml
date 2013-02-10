@@ -10,3 +10,4 @@ gemfile:
 script:
   - bundle exec rake knife
   - bundle exec rake foodcritic
+  - bundle exec rake spec
