@@ -18,7 +18,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-default['redis']['source']['version'] = "2.4.16"
+default['redis']['source']['version'] = "2.4.18"
 default['redis']['source']['prefix']  = "/usr/local"
 
 default['redis']['source']['tar_url']   =
