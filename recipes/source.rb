@@ -75,22 +75,15 @@ end
 if node['redis']['source']['create_service']
   node.set['redis']['daemonize'] = "yes"
 
-  execute "Install redis-server init.d script" do
-    command   <<-COMMAND
-      cp #{cache_dir}/#{tar_dir}/utils/redis_init_script /etc/init.d/redis
-    COMMAND
-
-    creates   "/etc/init.d/redis"
-  end
-
-  file "/etc/init.d/redis" do
+  template "/etc/init.d/redis" do
+    source  "redis.init.erb"
     owner   "root"
     group   "root"
     mode    "0755"
   end
 
   service "redis" do
-    supports  :status => false, :restart => false, :reload => false
+    supports  :status => true, :restart => true, :reload => false
     action    :enable
   end
 
@@ -105,7 +98,6 @@ if node['redis']['source']['create_service']
     owner   "root"
     group   "root"
     mode    "0644"
-
     notifies :restart, resources(:service => "redis"), :immediately
   end
 end
