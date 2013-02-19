@@ -62,11 +62,11 @@ save 60 10000
 rdbcompression yes
 
 # The filename where to dump the DB
-dbfilename dump.rdb
+dbfilename <%= node['redis']['db_filename'] %>
 
 # For default save/load DB in/from the working directory
 # Note that you must specify a directory not a file name.
-dir /var/lib/redis
+dir <%= node['redis']['db_dir'] %>
 
 ################################# REPLICATION #################################
 
