@@ -24,3 +24,6 @@ default['redis']['daemonize']    = "yes"
 default['redis']['timeout']      = "300"
 default['redis']['loglevel']     = "notice"
 default['redis']['password']     = nil
+default['redis']['db_filename']  = 'dump.rdb'
+default['redis']['db_dir']       = '/var/lib/redis'
+
