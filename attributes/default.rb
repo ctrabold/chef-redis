@@ -19,7 +19,7 @@
 
 default['redis']['bind']         = node['ipaddress']
 default['redis']['port']         = "6379"
-default['redis']['config_path']  = "/etc/redis/redis.conf"
+default['redis']['config_path']  = "/etc/redis.conf"
 default['redis']['daemonize']    = "no"
 default['redis']['timeout']      = "300"
 default['redis']['loglevel']     = "notice"
