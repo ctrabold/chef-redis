@@ -8,9 +8,11 @@ Details http://redis.io/
 
 # REQUIREMENTS:
 
-none
+- For CentOS/RedHat - Yum cookbook, and recipe yum::remi for Remi repository.
 
-Currently tested on Ubuntu 10.04 ONLY.
+- Tested on:
+  - Ubuntu 10.04, original author.
+  - CentOS, 6.3 with Remi repository, (Dmytro Kovalov)
 
 # ATTRIBUTES:
 
