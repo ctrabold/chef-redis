@@ -73,12 +73,12 @@ end
 end
 
 if node['redis']['source']['create_service']
-  execute "Install redis-server init.d script" do
-    command   <<-COMMAND
-      cp #{cache_dir}/#{tar_dir}/utils/redis_init_script /etc/init.d/redis
-    COMMAND
 
-    creates   "/etc/init.d/redis"
+  template "/etc/init.d/redis" do
+    source  "redis_init_script.erb"
+    owner   "root"
+    group   "root"
+    mode    "0755"
   end
 
   file "/etc/init.d/redis" do
@@ -87,23 +87,29 @@ if node['redis']['source']['create_service']
     mode    "0755"
   end
 
-  service "redis" do
-    supports  :status => false, :restart => false, :reload => false
-    action    :enable
-  end
-
   directory "/etc/redis" do
     owner   "root"
     group   "root"
     mode    "0755"
   end
 
-  template "/etc/redis/#{port}.conf" do
+  template "/etc/security/limits.d/redis.conf" do
+    source  "redis.conf.limits.erb"
+    owner   "root"
+    group   "root"
+    mode    "0644"
+  end
+
+  template "/etc/redis/redis.conf" do
     source  "redis.conf.erb"
     owner   "root"
     group   "root"
     mode    "0644"
-
-    notifies :restart, "service[redis]"
   end
+
+  service "redis" do
+    supports  :status => false, :restart => false, :reload => false
+    action    [:enable, :start]
+  end
+
 end
