@@ -19,7 +19,7 @@
 #
 case node['platform']
 when 'centos', 'redhat'
-  include_recipe 'yum::remi'
+  include_recipe 'yum-remi'
   package 'redis'
   redis_init_d = '/etc/init.d/redis'
 when 'ubuntu'
